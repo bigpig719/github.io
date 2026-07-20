@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Academic homepage of Heng Zhu, a graduate student at Chongqing University of Posts and Telecommunications, focusing on time-series analysis.">
+  <meta name="author" content="Heng Zhu">
+  <title>Heng Zhu | Academic Homepage</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: rgba(255, 255, 255, 0.92);
+      --surface-strong: #ffffff;
+      --text: #172033;
+      --muted: #5f6b7d;
+      --accent: #2457a6;
+      --accent-dark: #183f7d;
+      --line: #dfe5ee;
+      --soft: #eaf1fb;
+      --shadow: 0 18px 45px rgba(34, 54, 86, 0.10);
+      --radius: 22px;
+      --max: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 6%, rgba(36, 87, 166, 0.10), transparent 28%),
+        radial-gradient(circle at 92% 10%, rgba(79, 125, 194, 0.09), transparent 25%),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(246, 248, 251, 0.80);
+      border-bottom: 1px solid rgba(223, 229, 238, 0.78);
+    }
+
+    .nav {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-size: 1.12rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
+
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+    .lang-button {
+      border: 1px solid var(--line);
+      background: var(--surface-strong);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(34, 54, 86, 0.06);
+    }
+
+    .lang-button:hover {
+      border-color: #b8c7dd;
+      transform: translateY(-1px);
+    }
+
+    main {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 72px 0 64px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .hero-main,
+    .hero-card,
+    .section-card {
+      background: var(--surface);
+      border: 1px solid rgba(223, 229, 238, 0.90);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .hero-main {
+      padding: clamp(32px, 6vw, 64px);
+      min-height: 430px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+      color: var(--accent);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 8vw, 5.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .role {
+      margin: 24px 0 8px;
+      color: var(--accent-dark);
+      font-size: clamp(1.08rem, 2vw, 1.32rem);
+      font-weight: 760;
+    }
+
+    .affiliation {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.03rem;
+      max-width: 670px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
+      font-weight: 760;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .button:hover {
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: white;
+      background: var(--accent);
+      box-shadow: 0 10px 24px rgba(36, 87, 166, 0.22);
+    }
+
+    .button-secondary {
+      color: var(--text);
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .hero-card {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(160deg, rgba(36, 87, 166, 0.98), rgba(24, 63, 125, 0.96));
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -90px;
+      bottom: -95px;
+      border: 1px solid rgba(255,255,255,0.20);
+      border-radius: 50%;
+      box-shadow: 0 0 0 38px rgba(255,255,255,0.05), 0 0 0 76px rgba(255,255,255,0.035);
+    }
+
+    .monogram {
+      position: relative;
+      z-index: 1;
+      width: 92px;
+      height: 92px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 850;
+      letter-spacing: -0.04em;
+      color: var(--accent-dark);
+      background: white;
+      box-shadow: 0 16px 34px rgba(5, 19, 47, 0.22);
+    }
+
+    .focus-label {
+      position: relative;
+      z-index: 1;
+      margin-top: 42px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: rgba(255,255,255,0.72);
+      font-weight: 800;
+    }
+
+    .focus {
+      position: relative;
+      z-index: 1;
+      margin: 6px 0 0;
+      font-size: 1.55rem;
+      line-height: 1.25;
+      font-weight: 760;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .section-card {
+      padding: clamp(28px, 4vw, 42px);
+    }
+
+    .section-card.full { grid-column: 1 / -1; }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 1.55rem;
+      letter-spacing: -0.025em;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--accent-dark);
+      border: 1px solid #d7e3f4;
+      font-size: 0.90rem;
+      font-weight: 720;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 24px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      top: 8px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px var(--soft);
+    }
+
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 26px;
+      bottom: -20px;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .timeline-item:last-child::after { display: none; }
+
+    .degree {
+      margin: 0;
+      font-size: 1.04rem;
+      font-weight: 800;
+    }
+
+    .school {
+      margin: 3px 0 0;
+      color: var(--muted);
+    }
+
+    .date {
+      margin: 8px 0 0;
+      color: var(--accent);
+      font-size: 0.90rem;
+      font-weight: 760;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: #f9fbfe;
+      border: 1px solid var(--line);
+      overflow-wrap: anywhere;
+    }
+
+    .contact-icon {
+      flex: 0 0 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    footer {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 0 0 34px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    [data-lang="zh"] { display: none; }
+    body.zh [data-lang="en"] { display: none; }
+    body.zh [data-lang="zh"] { display: inline; }
+    body.zh div[data-lang="zh"],
+    body.zh p[data-lang="zh"],
+    body.zh h2[data-lang="zh"] { display: block; }
+
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+      main { padding-top: 42px; }
+      .hero, .grid { grid-template-columns: 1fr; }
+      .hero-main { min-height: auto; }
+      .section-card.full { grid-column: auto; }
+    }
+
+    @media (max-width: 520px) {
+      .nav, main, footer { width: min(100% - 24px, var(--max)); }
+      .nav { min-height: 64px; }
+      .hero-main, .hero-card, .section-card { border-radius: 18px; }
+      .hero-main { padding: 30px 24px; }
+      .hero-card, .section-card { padding: 26px 22px; }
+      h1 { font-size: 3.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top">Heng Zhu</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#about"><span data-lang="en">About</span><span data-lang="zh">简介</span></a>
+          <a href="#education"><span data-lang="en">Education</span><span data-lang="zh">教育经历</span></a>
+          <a href="#contact"><span data-lang="en">Contact</span><span data-lang="zh">联系方式</span></a>
+        </div>
+        <button class="lang-button" id="langToggle" type="button" aria-label="Switch language">中文</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-main">
+        <div class="eyebrow">
+          <span data-lang="en">Academic homepage</span>
+          <span data-lang="zh">个人学术主页</span>
+        </div>
+        <h1 id="page-title">Heng Zhu</h1>
+        <p class="role">
+          <span data-lang="en">Graduate Student in Artificial Intelligence</span>
+          <span data-lang="zh">人工智能专业研究生</span>
+        </p>
+        <p class="affiliation">
+          <span data-lang="en">School of Artificial Intelligence, Chongqing University of Posts and Telecommunications</span>
+          <span data-lang="zh">重庆邮电大学人工智能学院</span>
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="mailto:2022211628@stu.cqupt.edu.cn">
+            <span data-lang="en">Email me</span><span data-lang="zh">发送邮件</span>
+          </a>
+          <a class="button button-secondary" href="#education">
+            <span data-lang="en">View education</span><span data-lang="zh">查看教育经历</span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Research focus">
+        <div class="monogram" aria-hidden="true">HZ</div>
+        <div>
+          <div class="focus-label">
+            <span data-lang="en">Research focus</span>
+            <span data-lang="zh">研究方向</span>
+          </div>
+          <p class="focus">
+            <span data-lang="en">Time-series analysis</span>
+            <span data-lang="zh">时间序列分析</span>
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <div class="grid">
+      <section class="section-card" id="about">
+        <h2 data-lang="en">About</h2>
+        <h2 data-lang="zh">个人简介</h2>
+        <p class="lead" data-lang="en">
+          I am a graduate student in Artificial Intelligence at Chongqing University of Posts and Telecommunications.
+          My current research interest is time-series analysis. I previously studied Data Science and Big Data Technology
+          at the same university.
+        </p>
+        <p class="lead" data-lang="zh">
+          我目前是重庆邮电大学人工智能学院人工智能专业研究生，研究方向为时间序列分析。
+          本科阶段就读于重庆邮电大学数据科学与大数据技术专业。
+        </p>
+        <div class="chips" aria-label="Research interests">
+          <span class="chip"><span data-lang="en">Time-series analysis</span><span data-lang="zh">时间序列分析</span></span>
+          <span class="chip"><span data-lang="en">Artificial intelligence</span><span data-lang="zh">人工智能</span></span>
+          <span class="chip"><span data-lang="en">Data science</span><span data-lang="zh">数据科学</span></span>
+        </div>
+      </section>
+
+      <section class="section-card" id="education">
+        <h2 data-lang="en">Education</h2>
+        <h2 data-lang="zh">教育经历</h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <p class="degree">
+              <span data-lang="en">Graduate Student in Artificial Intelligence</span>
+              <span data-lang="zh">人工智能专业 · 硕士研究生</span>
+            </p>
+            <p class="school">
+              <span data-lang="en">School of Artificial Intelligence, Chongqing University of Posts and Telecommunications</span>
+              <span data-lang="zh">重庆邮电大学人工智能学院</span>
+            </p>
+            <p class="date">
+              <span data-lang="en">Expected June 2029</span>
+              <span data-lang="zh">预计 2029 年 6 月毕业</span>
+            </p>
+          </article>
+
+          <article class="timeline-item">
+            <p class="degree">
+              <span data-lang="en">Undergraduate Studies in Data Science and Big Data Technology</span>
+              <span data-lang="zh">数据科学与大数据技术专业 · 本科</span>
+            </p>
+            <p class="school">
+              <span data-lang="en">School of Artificial Intelligence, Chongqing University of Posts and Telecommunications</span>
+              <span data-lang="zh">重庆邮电大学人工智能学院</span>
+            </p>
+            <p class="date">September 2022 – June 2026</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card full" id="contact">
+        <h2 data-lang="en">Contact</h2>
+        <h2 data-lang="zh">联系方式</h2>
+        <p class="lead">
+          <span data-lang="en">For academic communication, please contact me through my university email.</span>
+          <span data-lang="zh">学术交流请通过学校邮箱与我联系。</span>
+        </p>
+        <div class="contact-list">
+          <div class="contact-row">
+            <div class="contact-icon" aria-hidden="true">@</div>
+            <div>
+              <strong><span data-lang="en">University email</span><span data-lang="zh">学校邮箱</span></strong><br>
+              <a href="mailto:2022211628@stu.cqupt.edu.cn">2022211628@stu.cqupt.edu.cn</a>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon" aria-hidden="true">⌂</div>
+            <div>
+              <strong><span data-lang="en">Affiliation</span><span data-lang="zh">所在单位</span></strong><br>
+              <span data-lang="en">School of Artificial Intelligence, Chongqing University of Posts and Telecommunications</span>
+              <span data-lang="zh">重庆邮电大学人工智能学院</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Heng Zhu ·
+    <span data-lang="en">Academic homepage</span>
+    <span data-lang="zh">个人学术主页</span>
+  </footer>
+
+  <script>
+    const button = document.getElementById("langToggle");
+    const savedLanguage = localStorage.getItem("preferredLanguage");
+    if (savedLanguage === "zh") {
+      document.body.classList.add("zh");
+      document.documentElement.lang = "zh-CN";
+      button.textContent = "English";
+    }
+
+    button.addEventListener("click", () => {
+      const isChinese = document.body.classList.toggle("zh");
+      document.documentElement.lang = isChinese ? "zh-CN" : "en";
+      button.textContent = isChinese ? "English" : "中文";
+      localStorage.setItem("preferredLanguage", isChinese ? "zh" : "en");
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
